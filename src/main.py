@@ -1,15 +1,9 @@
-from routes.employee_routes import init_employee_routes
-from middleware.auth_middleware import require_auth
+
 from flask import Flask
+from routes.employee_routes import routes
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'UCHALE_12345'
-
-# Initialize routes
-init_employee_routes(app)
-
-#Definir el middleware
-app.before_request(require_auth)
+app.register_blueprint(routes)
 
 if __name__ == "__main__" :
     app.run(debug=True)
